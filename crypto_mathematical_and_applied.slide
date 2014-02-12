@@ -1,0 +1,278 @@
+Cryptography: Mathematical and Applied
+Columbia University
+12 Feb 2014
+
+Aditya Mukerjee
+
+http://www.adityamukerjee.net
+@chimeracoder
+
+* 
+.image 88x31.png
+
+* Personal Background
+
+- Co-Founder of [[https://www.boardrounds.com/][BoardRounds]]
+- Master's student in computer science at [[http://tech.cornell.edu][Cornell NYC Tech]]
+- Studied computer science and statistics at Columbia
+- Worked on the server team at foursquare (Explore recommendation engine)
+- Previously on the OkCupid data team (conducted research for [[http://blog.okcupid.com/index.php/the-real-stuff-white-people-like/][OkTrends]] reports)
+- Formerly the Hacker-in-Residence at Quotidian Ventures
+- hackNY fellow 2011
+- Personal interest in cryptography
+
+* Cryptography is romantic
+
+* Alice and Bob
+- The biggest "will-they-or-won't-they?" couple in mathematical history
+.image 3913656401_d9787738ea.jpg
+
+
+* Cryptography is useful
+
+* How do you flip a coin over the phone?
+- How can you trust the person on the other line?
+.image https://farm4.staticflickr.com/3812/9464528090_ace5f129cf_n.jpg
+
+* Flipping a coin over the phone
+- Develop a *commitment*scheme*
+- [[http://varnull.adityamukerjee.net/post/70200478932/flipping-a-coin-over-the-phone][This also works over email]]
+
+* Zero-knowledge proofs
+- "NP" problems: Easy to *verify* a correct answer, but not necessarily to *find* a correct answer.
+- Alice wants to prove that she knows the answer, but without revealing it
+- How can she convince Bob that she knows the answer?
+- Example: airline data
+- Example: patient data
+
+
+* Multi-party auction
+- Five people are conducting an auction online
+- None of them trust each other
+- How do you know that someone won't change his bid at the last minute?
+- How do you know the payer will pay the money?
+- How do you know the seller won't take the money and run?
+
+
+* Cryptography is relevant
+
+* Edward Snowden, the NSA, and PRISM
+- June 5, 2013: the leaks begin!
+- February 12, 2014: still ongoing
+.image edward-snowden.jpg
+
+* What was disclosed?
+
+* Selected disclosures
+- NSA spied on Second Life and World of Warcraft users with fake characters
+- NSA tracks online sexual activity of "radicalizers", in order to discredit them
+- NSA harvets millions of emails, tracking locations of cell phones
+- "I, sitting at my desk [could] wiretap anyone, from you or your accountant, to a federal judge or even the president, if I had a personal email"
+- Similarities to the East German _Stasi_
+
+
+* XKeyscore
+- "You could read anyone’s email in the world, anybody you’ve got an email address for. Any website: You can watch traffic to and from it. Any computer that an individual sits at: You can watch it. Any laptop that you’re tracking: you can follow it as it moves from place to place throughout the world. It’s a one-stop-shop for access to the NSA’s information."
+
+- “…You can tag individuals… Let’s say you work at a major German corporation and I want access to that network, I can track your username on a website on a form somewhere, I can track your real name, I can track associations with your friends and I can build what’s called a fingerprint, which is network activity unique to you, which means anywhere you go in the world, anywhere you try to sort of hide your online presence, your identity.”"
+
+
+* Getting started 
+
+* Some basic facts
+- Cryptography relies on *discrete mathematics*
+- Any message can be expressed using an alphabet
+- Any alphabet can be mapped to a two-character (*binary*) alphabet
+
+- Any two bits can be "XOR"ed together to create a third bit
+
+- A one-way-function is easy to compute, but hard to invert.
+
+- *Negligible*probability*: functions such as 2^{-x}
+- *Probabilistic*polynomial*time*: what does this mean?
+
+
+* The bad news
+- We have a provable upper bound on security
+- A one-time pad consists of random characters that are XORed with the message
+- A one-time pad provides "perfect" security.
+- So why don't we all just use one-time pads?
+
+
+
+* The worse news
+- 50% is a very narrow target
+- The *Majority*principle* allows an attacker to amplify even small weaknesses.
+
+
+
+* It all starts with steganography
+- Keep it hidden!
+.image 4850496398_966002a6d0_n.jpg
+- Mary, Queen of Scots relied on steganography in prison
+
+* But don't hide everything
+- Kerckhoffs's principle
+- _A_cryptosystem_should_be_secure_even_if_everything_about_the_system,_except_the_key,_is_public_knowledge_ 
+- The opposite is "security by obscurity".
+
+
+
+* Symmetric key encryption
+
+
+* Caesar, the Pope, the King of Spain, and the Devil
+.image 3q2l27.jpg
+- Simple alphabetic shift
+- Not so great in the era of computers
+- ...or if you always use the same shift offset
+
+* Vigenère
+- Considered uncrackable (_le_chiffre_indéchiffrable_)
+- Vulnerable to analysis of the distribution of characters
+.image Vigenère_square_shading.svg
+
+* Enigma
+.image 3985107402_ae6b837b8b_m.jpg
+- Was used commercially before being adopted by Nazi Germany
+- Alan Turing was known for his work on cracking the enigma (among more)
+- Without the ability to decipher the enigma, the Allies may have lost World War II
+
+
+* Geheimschreiber
+- The successor to the engima machine
+- 5 "XOR" wheels, 5 transpose wheels
+- Not all transpositions are equally likely
+- Messages all begin with "UMUM 4 VEVE" and end with "HH"
+- This is a *known-plaintext*attack*
+.image 10967531395_0bdb985518_n.jpg
+http://chimeracoder.github.io/geheimschreiber/
+
+
+
+* Asymmetric key encryption
+- Also known as *public*-*key*cryptography*.
+- Advantage: Does *not* require secure exchange of private keys!
+- Disadvantage: Keys need to be *authenticated*
+- Disadvantage: Expensive
+- Disadvantage: Theoretically complex
+- Disadvantage: Reliance on prime numbers
+
+.image Public-key-crypto-1.svg
+
+
+* RSA
+
+- In the discrete realm, exponentiation is easy, logarithms are hard.
+- Exponentiation is essentially a one-way-function
+- Finding factors of a number can be easy or tough
+- Finding the factors of the product of two primes is *really* tough
+
+* Online encryption
+
+- Do nothing
+- Trusted third party (SSL/TLS)
+- End-to-end (PGP/GPG, OTR)
+
+* SSL/TLS
+- This is the underpinning of "https"
+- Users encrypt content before sending it using the website's public key (certificate)
+- Websites decrypt it using the corresponding private key
+- How do you know that you are using the correct public key for encryption?
+
+* Certificate Authorities
+- Certificates are validated by trusted third parties
+- *Certificate*pinning* can prevent man-in-the-middle attacks.
+.image tumblr_inline_mzb6lowvFy1qh11x4.png
+- But who will watch the watchdogs?
+
+
+* Email 
+- Email is inherently insecure by design.
+- Think of email as a *postcard*.
+- ...except worse, because snail mail enjoys additional legal protections
+
+* "Metadata"
+- So-called "metadata" can be incredibly revealing
+- [[http://kieranhealy.org/blog/archives/2013/06/09/using-metadata-to-find-paul-revere/][Using metadata to find Paul Revere]]
+- Example: Nomi
+- Example: Patient data
+
+
+* PGP: Pretty Good Privacy
+- So strong it must be illegal!
+- Zimmerman was investigated for "munitions export without a license"
+- First & Second amendments
+- RSA/ElGamal
+- Thunderbird + Enigmail, Mail + GPGTools (OS X)
+
+* Zimmerman today: Silent Circle and Dark Mail
+- Silent Circle: P2P encrypted texts, phone calls.
+- Silent Circle deleted all emails spontaneously in August.
+- Currently working on *Dark*Mail*Technical*Alliance* with Lavabit
+
+* OTR: (Off the record)
+- This is *not* the same as the "off the record" feature in Google Hangouts!
+- Functions like PGP 
+- Pidgin (Windows/Linux), Adium (OS X)
+
+* Tor
+- Provides "onion" protection
+- Viking ship analogy
+- Does not conceal connection itself (as demonstrated in Harvard bomb scare incident)
+
+.image tor-logo.png
+
+* Backdooring cryptography
+- A large portion of cryptographic advances are NSA-funded
+- Speculation that certain cryptographic schemes are "backdoored"
+- What does it mean to be backdoored?
+
+
+* Randomness 
+
+* What is randomness?
+.image 14_is_not_a_random_number_tshirts-r76e7ff5208e34707a888dc7ef67eabd2_va6l9_512.jpg
+
+* How do we generate random numbers?
+- Randomness is impossible - we used *pseudorandom* number generators instead
+- What is psuedorandomness?
+- Pesudorandom numbers are numbers which are indistinguishable from random numbers.
+
+* ...yeah...
+
+* Attacks on randomness
+- Older versions of SSL are insecure because the entropy used is not random enough
+- Remember what the majority principle implies for a PPT attacker!
+
+* Alternative approaches
+.image random_number.png
+[[https://xkcd.com/221/]]
+
+
+* The future of crypto
+
+* Quantum cryptography
+- Quantum key distribution
+- Break prime-number crypto using quantum computers
+
+* Future cryptographic societies
+- Already critical in national security and diplomacy.
+- Economic uses -> cryptocurrencies?
+
+* Key takeaways
+
+- Crypto is *hard* (don't reinvent it!)
+- Crypto is *easy* (don't overthink it!)
+- Crypto is *fun* (do think about it!)
+- Crypto is *critically*important* (do use it!)
+
+
+* Further resources
+
+- [[http://www.amazon.com/The-Code-Book-Science-Cryptography/dp/0385495323/ref=sr_1_1?ie=UTF8&qid=1392184056&sr=8-1&keywords=the+code+book+simon+singh][The Code Book]] by Simon Singh
+- COMS W4261: Introduction to Cryptography
+- [[http://www.matasano.com/articles/crypto-challenges/][Matasano Crypto Challenges]]
+
+
+
