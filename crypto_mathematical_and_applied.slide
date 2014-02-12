@@ -21,6 +21,8 @@ http://www.adityamukerjee.net
 - hackNY fellow 2011
 - Personal interest in cryptography
 
+* What is cryptography (and why do we care)?
+
 * Cryptography is romantic
 
 * Alice and Bob
@@ -36,6 +38,7 @@ http://www.adityamukerjee.net
 
 * Flipping a coin over the phone
 - Develop a *commitment*scheme*
+- The commitment scheme must reveal zero (additional) knowledge about the coin flip
 - [[http://varnull.adityamukerjee.net/post/70200478932/flipping-a-coin-over-the-phone][This also works over email]]
 
 * Zero-knowledge proofs
@@ -80,13 +83,13 @@ http://www.adityamukerjee.net
 * Getting started 
 
 * Some basic facts
-- Cryptography relies on *discrete mathematics*
+- Cryptography relies on *discrete*mathematics*
 - Any message can be expressed using an alphabet
 - Any alphabet can be mapped to a two-character (*binary*) alphabet
 
-- Any two bits can be "XOR"ed together to create a third bit
+- Any two charactres (*bits*) can be *XOR* -ed together to create a different bit
 
-- A one-way-function is easy to compute, but hard to invert.
+- A *one-way-function* is easy to compute, but hard to invert.
 
 - *Negligible*probability*: functions such as 2^{-x}
 - *Probabilistic*polynomial*time*: what does this mean?
