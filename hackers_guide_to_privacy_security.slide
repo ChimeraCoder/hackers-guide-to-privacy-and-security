@@ -1,6 +1,6 @@
-Cryptography: Mathematical and Applied
-Columbia University
-12 Feb 2014
+A Hacker's Guide to Privacy and Security
+hackNY Hackathon: Columbia University
+5 Apr 2014
 
 Aditya Mukerjee
 
@@ -12,7 +12,7 @@ http://www.adityamukerjee.net
 
 * Personal Background
 
-- Co-Founder of [[https://www.boardrounds.com/][BoardRounds]]
+- Cofounder & CTO of [[https://www.boardrounds.com/][BoardRounds]]
 - Master's student in computer science at [[http://tech.cornell.edu][Cornell NYC Tech]]
 - Studied computer science and statistics at Columbia
 - Worked on the server team at foursquare (Explore recommendation engine)
@@ -59,25 +59,7 @@ http://www.adityamukerjee.net
 
 * Cryptography is relevant
 
-* Edward Snowden, the NSA, and PRISM
-- June 5, 2013: the leaks begin!
-- February 12, 2014: still ongoing
 .image edward-snowden.jpg
-
-* What was disclosed?
-
-* Selected disclosures
-- NSA spied on Second Life and World of Warcraft users with fake characters
-- NSA tracks online sexual activity of "radicalizers", in order to discredit them
-- NSA harvets millions of emails, tracking locations of cell phones
-- "I, sitting at my desk [could] wiretap anyone, from you or your accountant, to a federal judge or even the president, if I had a personal email"
-- Similarities to the East German _Stasi_
-
-
-* XKeyscore
-- "You could read anyone’s email in the world, anybody you’ve got an email address for. Any website: You can watch traffic to and from it. Any computer that an individual sits at: You can watch it. Any laptop that you’re tracking: you can follow it as it moves from place to place throughout the world. It’s a one-stop-shop for access to the NSA’s information."
-
-- “…You can tag individuals… Let’s say you work at a major German corporation and I want access to that network, I can track your username on a website on a form somewhere, I can track your real name, I can track associations with your friends and I can build what’s called a fingerprint, which is network activity unique to you, which means anywhere you go in the world, anywhere you try to sort of hide your online presence, your identity.”"
 
 
 * Getting started 
@@ -123,33 +105,14 @@ http://www.adityamukerjee.net
 
 * Symmetric key encryption
 
-
-* Caesar, the Pope, the King of Spain, and the Devil
-.image 3q2l27.jpg
-- Simple alphabetic shift
-- Not so great in the era of computers
-- ...or if you always use the same shift offset
-
-* Vigenère
-- Considered uncrackable (_le_chiffre_indéchiffrable_)
-- Vulnerable to analysis of the distribution of characters
-.image Vigenère_square_shading.svg
-
-* Enigma
-.image 3985107402_ae6b837b8b_m.jpg
-- Was used commercially before being adopted by Nazi Germany
-- Alan Turing was known for his work on cracking the enigma (among more)
-- Without the ability to decipher the enigma, the Allies may have lost World War II
-
-
 * Geheimschreiber
 - The successor to the engima machine
-- 5 "XOR" wheels, 5 transpose wheels
-- Not all transpositions are equally likely
+- Alan Turing was known for his work on cracking the enigma (among more)
+- Without the ability to decipher the enigma, the Allies may have lost World War II
 - Messages all begin with "UMUM 4 VEVE" and end with "HH"
 - This is a *known-plaintext*attack*
 .image 10967531395_0bdb985518_n.jpg
-http://chimeracoder.github.io/geheimschreiber/
+- [[https://chimeracoder.github.io/geheimschreiber/]]
 
 
 
@@ -168,10 +131,10 @@ http://chimeracoder.github.io/geheimschreiber/
 
 - In the discrete realm, exponentiation is easy, logarithms are hard.
 - Exponentiation is essentially a one-way-function
-- Finding factors of a number can be easy or tough
+- Finding at least two factors of a number can be either easy or tough
 - Finding the factors of the product of two primes is *really* tough
 
-* Online encryption
+* Online encryption options
 
 - Do nothing
 - Trusted third party (SSL/TLS)
@@ -185,9 +148,15 @@ http://chimeracoder.github.io/geheimschreiber/
 
 * Certificate Authorities
 - Certificates are validated by trusted third parties
-- *Certificate*pinning* can prevent man-in-the-middle attacks.
-.image tumblr_inline_mzb6lowvFy1qh11x4.png
 - But who will watch the watchdogs?
+- *Certificate*pinning* can prevent [[http://varnull.adityamukerjee.net/post/73134171911/bypassing-a-dns-man-in-the-middle-attack-against-google][man-in-the-middle attacks]].
+.image tumblr_inline_mzb6lowvFy1qh11x4.png
+
+* DNS Resolution
+
+- Trivial to hijack all traffic on port 53.
+- DNSSEC is a common, [[https://news.ycombinator.com/item?id=5571937][but flawed]], attempt.
+- [[https://en.wikipedia.org/wiki/DNSCurve][DNSCurve]] is likely a better approach
 
 
 * Email 
@@ -252,6 +221,19 @@ http://chimeracoder.github.io/geheimschreiber/
 .image random_number.png
 [[https://xkcd.com/221/]]
 
+
+* Best Practices for Security
+- Don't write your own crypto
+- *Don't*write*your*own*crypto*.
+
+
+* More Best Practices for Security
+- Encrypt your filesystem *and* your swap partition
+- User credentials should exist only in memory
+- Use bcrypt (or scrypt) for user credentials
+- Use iptables (or ufw) to limit possible attack vectors
+- Be *very* careful when using VPS providers.
+- If using Amazon, place application in a VPC and database in a private subnet
 
 * The future of crypto
 
