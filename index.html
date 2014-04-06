@@ -1,0 +1,893 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A Hacker&#39;s Guide to Privacy and Security</title>
+    <meta charset='utf-8'>
+    <script src='static/slides.js'></script>
+  </head>
+
+  <body style='display: none'>
+
+    <section class='slides layout-widescreen'>
+      
+      <article>
+        <h1>A Hacker&#39;s Guide to Privacy and Security</h1>
+        <h3>hackNY Hackathon: Columbia University</h3>
+        <h3>5 April 2014</h3>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Aditya Mukerjee
+  </p>
+  
+
+          </div>
+        
+          <div class="presenter">
+            
+          </div>
+        
+      </article>
+      
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="88x31.png">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Personal Background</h3>
+        
+  <ul>
+  
+    <li>Cofounder &amp; CTO of <a href="https://www.boardrounds.com/" target="_blank">BoardRounds</a></li>
+  
+    <li>Master&#39;s student in computer science at <a href="http://tech.cornell.edu" target="_blank">Cornell NYC Tech</a></li>
+  
+    <li>Studied computer science and statistics at Columbia</li>
+  
+    <li>Worked on the server team at foursquare (Explore recommendation engine)</li>
+  
+    <li>Previously on the OkCupid data team (conducted research for <a href="http://blog.okcupid.com/index.php/the-real-stuff-white-people-like/" target="_blank">OkTrends</a> reports)</li>
+  
+    <li>Formerly the Hacker-in-Residence at Quotidian Ventures</li>
+  
+    <li>hackNY fellow 2011</li>
+  
+    <li>Personal interest in cryptography</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>What is cryptography (and why do we care)?</h2>
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Cryptography is romantic</h2>
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Alice and Bob</h3>
+        
+  <ul>
+  
+    <li>The biggest &#34;will-they-or-won&#39;t-they?&#34; couple in mathematical history</li>
+  
+  </ul>
+
+<div class="image">
+  <img src="3913656401_d9787738ea.jpg">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Cryptography is useful</h2>
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>How do you flip a coin over the phone?</h3>
+        
+  <ul>
+  
+    <li>How can you trust the person on the other line?</li>
+  
+  </ul>
+
+<div class="image">
+  <img src="https://farm4.staticflickr.com/3812/9464528090_ace5f129cf_n.jpg">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Flipping a coin over the phone</h3>
+        
+  <ul>
+  
+    <li>Develop a <b>commitment scheme</b></li>
+  
+    <li>The commitment scheme must reveal zero (additional) knowledge about the coin flip</li>
+  
+    <li><a href="http://varnull.adityamukerjee.net/post/70200478932/flipping-a-coin-over-the-phone" target="_blank">This also works over email</a></li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Zero-knowledge proofs</h3>
+        
+  <ul>
+  
+    <li>&#34;NP&#34; problems: Easy to <b>verify</b> a correct answer, but not necessarily to <b>find</b> a correct answer.</li>
+  
+    <li>Alice wants to prove that she knows the answer, but without revealing it</li>
+  
+    <li>How can she convince Bob that she knows the answer?</li>
+  
+    <li>Example: airline data</li>
+  
+    <li>Example: patient data</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Multi-party auction</h3>
+        
+  <ul>
+  
+    <li>Five people are conducting an auction online</li>
+  
+    <li>None of them trust each other</li>
+  
+    <li>How do you know that someone won&#39;t change his bid at the last minute?</li>
+  
+    <li>How do you know the payer will pay the money?</li>
+  
+    <li>How do you know the seller won&#39;t take the money and run?</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Cryptography is relevant</h3>
+        
+<div class="image">
+  <img src="edward-snowden.jpg">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Getting started </h2>
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Some basic facts</h3>
+        
+  <ul>
+  
+    <li>Cryptography relies on <b>discrete mathematics</b></li>
+  
+    <li>Any message can be expressed using an alphabet</li>
+  
+    <li>Any alphabet can be mapped to a two-character (<b>binary</b>) alphabet</li>
+  
+  </ul>
+
+  <ul>
+  
+    <li>Any two charactres (<b>bits</b>) can be <b>XOR</b> -ed together to create a different bit</li>
+  
+  </ul>
+
+  <ul>
+  
+    <li>A <b>one-way-function</b> is easy to compute, but hard to invert.</li>
+  
+  </ul>
+
+  <ul>
+  
+    <li><b>Negligible probability</b>: functions such as 2^{-x}</li>
+  
+    <li><b>Probabilistic polynomial time</b>: what does this mean?</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>The bad news</h3>
+        
+  <ul>
+  
+    <li>We have a provable upper bound on security</li>
+  
+    <li>A one-time pad consists of random characters that are XORed with the message</li>
+  
+    <li>A one-time pad provides &#34;perfect&#34; security.</li>
+  
+    <li>So why don&#39;t we all just use one-time pads?</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>The worse news</h3>
+        
+  <ul>
+  
+    <li>50% is a very narrow target</li>
+  
+    <li>The <b>Majority principle</b> allows an attacker to amplify even small weaknesses.</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>It all starts with steganography</h3>
+        
+  <ul>
+  
+    <li>Keep it hidden!</li>
+  
+  </ul>
+
+<div class="image">
+  <img src="4850496398_966002a6d0_n.jpg">
+</div>
+
+  <ul>
+  
+    <li>Mary, Queen of Scots relied on steganography in prison</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>But don&#39;t hide everything</h3>
+        
+  <ul>
+  
+    <li>Kerckhoffs&#39;s principle</li>
+  
+    <li><i>A cryptosystem should be secure even if everything about the system, except the key, is public knowledge</i> </li>
+  
+    <li>The opposite is &#34;security by obscurity&#34;.</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Symmetric key encryption</h2>
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Geheimschreiber</h3>
+        
+  <ul>
+  
+    <li>The successor to the engima machine</li>
+  
+    <li>Alan Turing was known for his work on cracking the enigma (among more)</li>
+  
+    <li>Without the ability to decipher the enigma, the Allies may have lost World War II</li>
+  
+    <li>Messages all begin with &#34;UMUM 4 VEVE&#34; and end with &#34;HH&#34;</li>
+  
+    <li>This is a <b>known-plaintext attack</b></li>
+  
+  </ul>
+
+<div class="image">
+  <img src="10967531395_0bdb985518_n.jpg">
+</div>
+
+  <ul>
+  
+    <li><a href="https://chimeracoder.github.io/geheimschreiber/" target="_blank">https://chimeracoder.github.io/geheimschreiber/</a></li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Asymmetric key encryption</h3>
+        
+  <ul>
+  
+    <li>Also known as <b>public - key cryptography</b>.</li>
+  
+    <li>Advantage: Does <b>not</b> require secure exchange of private keys!</li>
+  
+    <li>Disadvantage: Keys need to be <b>authenticated</b></li>
+  
+    <li>Disadvantage: Expensive</li>
+  
+    <li>Disadvantage: Theoretically complex</li>
+  
+    <li>Disadvantage: Reliance on prime numbers</li>
+  
+  </ul>
+
+<div class="image">
+  <img src="Public-key-crypto-1.svg">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>RSA</h3>
+        
+  <ul>
+  
+    <li>In the discrete realm, exponentiation is easy, logarithms are hard.</li>
+  
+    <li>Exponentiation is essentially a one-way-function</li>
+  
+    <li>Finding at least two factors of a number can be either easy or tough</li>
+  
+    <li>Finding the factors of the product of two primes is <b>really</b> tough</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Online encryption options</h3>
+        
+  <ul>
+  
+    <li>Do nothing</li>
+  
+    <li>Trusted third party (SSL/TLS)</li>
+  
+    <li>End-to-end (PGP/GPG, OTR)</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>SSL/TLS</h3>
+        
+  <ul>
+  
+    <li>This is the underpinning of &#34;https&#34;</li>
+  
+    <li>Users encrypt content before sending it using the website&#39;s public key (certificate)</li>
+  
+    <li>Websites decrypt it using the corresponding private key</li>
+  
+    <li>How do you know that you are using the correct public key for encryption?</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Certificate Authorities</h3>
+        
+  <ul>
+  
+    <li>Certificates are validated by trusted third parties</li>
+  
+    <li>But who will watch the watchdogs?</li>
+  
+    <li><b>Certificate pinning</b> can prevent <a href="http://varnull.adityamukerjee.net/post/73134171911/bypassing-a-dns-man-in-the-middle-attack-against-google" target="_blank">man-in-the-middle attacks</a>.</li>
+  
+  </ul>
+
+<div class="image">
+  <img src="tumblr_inline_mzb6lowvFy1qh11x4.png">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>DNS Resolution</h3>
+        
+  <ul>
+  
+    <li>Trivial to hijack all traffic on port 53.</li>
+  
+    <li>DNSSEC is a common, <a href="https://news.ycombinator.com/item?id=5571937" target="_blank">but flawed</a>, attempt.</li>
+  
+    <li><a href="https://en.wikipedia.org/wiki/DNSCurve" target="_blank">DNSCurve</a> is likely a better approach</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Email </h3>
+        
+  <ul>
+  
+    <li>Email is inherently insecure by design.</li>
+  
+    <li>Think of email as a <b>postcard</b>.</li>
+  
+    <li>...except worse, because snail mail enjoys additional legal protections</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>&#34;Metadata&#34;</h3>
+        
+  <ul>
+  
+    <li>So-called &#34;metadata&#34; can be incredibly revealing</li>
+  
+    <li><a href="http://kieranhealy.org/blog/archives/2013/06/09/using-metadata-to-find-paul-revere/" target="_blank">Using metadata to find Paul Revere</a></li>
+  
+    <li>Example: Nomi</li>
+  
+    <li>Example: Patient data</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>PGP: Pretty Good Privacy</h3>
+        
+  <ul>
+  
+    <li>So strong it must be illegal!</li>
+  
+    <li>Zimmerman was investigated for &#34;munitions export without a license&#34;</li>
+  
+    <li>First &amp; Second amendments</li>
+  
+    <li>RSA/ElGamal</li>
+  
+    <li>Thunderbird + Enigmail, Mail + GPGTools (OS X)</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Zimmerman today: Silent Circle and Dark Mail</h3>
+        
+  <ul>
+  
+    <li>Silent Circle: P2P encrypted texts, phone calls.</li>
+  
+    <li>Silent Circle deleted all emails spontaneously in August.</li>
+  
+    <li>Currently working on <b>Dark Mail Technical Alliance</b> with Lavabit</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>OTR: (Off the record)</h3>
+        
+  <ul>
+  
+    <li>This is <b>not</b> the same as the &#34;off the record&#34; feature in Google Hangouts!</li>
+  
+    <li>Functions like PGP </li>
+  
+    <li>Pidgin (Windows/Linux), Adium (OS X)</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Tor</h3>
+        
+  <ul>
+  
+    <li>Provides &#34;onion&#34; protection</li>
+  
+    <li>Viking ship analogy</li>
+  
+    <li>Does not conceal connection itself (as demonstrated in Harvard bomb scare incident)</li>
+  
+  </ul>
+
+<div class="image">
+  <img src="tor-logo.png">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Backdooring cryptography</h3>
+        
+  <ul>
+  
+    <li>A large portion of cryptographic advances are NSA-funded</li>
+  
+    <li>Speculation that certain cryptographic schemes are &#34;backdoored&#34;</li>
+  
+    <li>What does it mean to be backdoored?</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Randomness </h2>
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>What is randomness?</h3>
+        
+<div class="image">
+  <img src="14_is_not_a_random_number_tshirts-r76e7ff5208e34707a888dc7ef67eabd2_va6l9_512.jpg">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>How do we generate random numbers?</h3>
+        
+  <ul>
+  
+    <li>Randomness is impossible - we used <b>pseudorandom</b> number generators instead</li>
+  
+    <li>What is psuedorandomness?</li>
+  
+    <li>Pesudorandom numbers are numbers which are indistinguishable from random numbers.</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>...yeah...</h2>
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Attacks on randomness</h3>
+        
+  <ul>
+  
+    <li>Older versions of SSL are insecure because the entropy used is not random enough</li>
+  
+    <li>Remember what the majority principle implies for a PPT attacker!</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Alternative approaches</h3>
+        
+<div class="image">
+  <img src="random_number.png">
+</div>
+
+  
+  <p>
+    <a href="https://xkcd.com/221/" target="_blank">https://xkcd.com/221/</a>
+  </p>
+  
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Best Practices for Security</h3>
+        
+  <ul>
+  
+    <li>Don&#39;t write your own crypto</li>
+  
+    <li><b>Don&#39;t write your own crypto</b>.</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>More Best Practices for Security</h3>
+        
+  <ul>
+  
+    <li>Encrypt your filesystem <b>and</b> your swap partition</li>
+  
+    <li>User credentials should exist only in memory</li>
+  
+    <li>Use bcrypt (or scrypt) for user credentials</li>
+  
+    <li>Use iptables (or ufw) to limit possible attack vectors</li>
+  
+    <li>Be <b>very</b> careful when using VPS providers.</li>
+  
+    <li>If using Amazon, place application in a VPC and database in a private subnet</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>The future of crypto</h2>
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Quantum cryptography</h3>
+        
+  <ul>
+  
+    <li>Quantum key distribution</li>
+  
+    <li>Break prime-number crypto using quantum computers</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Future cryptographic societies</h3>
+        
+  <ul>
+  
+    <li>Already critical in national security and diplomacy.</li>
+  
+    <li>Economic uses -&gt; cryptocurrencies?</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Key takeaways</h3>
+        
+  <ul>
+  
+    <li>Crypto is <b>hard</b> (don&#39;t reinvent it!)</li>
+  
+    <li>Crypto is <b>easy</b> (don&#39;t overthink it!)</li>
+  
+    <li>Crypto is <b>fun</b> (do think about it!)</li>
+  
+    <li>Crypto is <b>critically important</b> (do use it!)</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Further resources</h3>
+        
+  <ul>
+  
+    <li><a href="http://www.amazon.com/The-Code-Book-Science-Cryptography/dp/0385495323/ref=sr_1_1?ie=UTF8&amp;qid=1392184056&amp;sr=8-1&amp;keywords=the+code+book+simon+singh" target="_blank">The Code Book</a> by Simon Singh</li>
+  
+    <li>COMS W4261: Introduction to Cryptography</li>
+  
+    <li><a href="http://www.matasano.com/articles/crypto-challenges/" target="_blank">Matasano Crypto Challenges</a></li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h1>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Aditya Mukerjee
+  </p>
+  
+
+          </div>
+        
+          <div class="presenter">
+            <p class="link"><a href="http://www.adityamukerjee.net" target="_blank">http://www.adityamukerjee.net</a></p><p class="link"><a href="http://twitter.com/chimeracoder" target="_blank">@chimeracoder</a></p>
+          </div>
+        
+      </article>
+
+  </body>
+  
+</html>
