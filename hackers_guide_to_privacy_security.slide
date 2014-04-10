@@ -228,6 +228,7 @@ http://www.adityamukerjee.net
 
 
 * More Best Practices for Security
+- Use [https://twitter.com/chimeracoder/status/453564686190272512][safe curves]] with elliptic-curve crypto instead of RSA (discrete log)
 - Encrypt your filesystem *and* your swap partition
 - User credentials should exist only in memory
 - Use bcrypt (or scrypt) for user credentials
